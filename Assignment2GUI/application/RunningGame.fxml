@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SelectedGameController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SelectedGameController">
    <children>
-      <TableView fx:id="table" layoutX="20.0" layoutY="56.0" prefHeight="418.0" prefWidth="434.0">
+      <TableView fx:id="table" layoutX="20.0" layoutY="56.0" prefHeight="286.0" prefWidth="434.0">
         <columns>
           <TableColumn fx:id="iD" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="participantType" prefWidth="132.0" text="Type" />
@@ -16,7 +16,7 @@
             <TableColumn fx:id="state" prefWidth="75.0" text="State" />
         </columns>
       </TableView>
-      <TableView fx:id="selectedAthleteTable" layoutX="563.0" layoutY="56.0" prefHeight="418.0" prefWidth="317.0">
+      <TableView fx:id="selectedAthleteTable" layoutX="563.0" layoutY="56.0" prefHeight="286.0" prefWidth="317.0">
         <columns>
           <TableColumn fx:id="selectedID" prefWidth="93.0" text="ID" />
           <TableColumn fx:id="selectedParticipantType" minWidth="0.0" prefWidth="57.0" text="Type" />
@@ -25,6 +25,22 @@
       </TableView>
       <Button fx:id="addbtn" layoutX="477.0" layoutY="195.0" mnemonicParsing="false" onAction="#addingAthletes" text="Add  &gt;&gt;" />
       <Button layoutX="477.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
-      <Button fx:id="nextbtn" layoutX="732.0" layoutY="559.0" mnemonicParsing="false" onAction="#nextOfficialSelect" text="Click To Select Official" />
+      <Button fx:id="gameStartbtn" layoutX="655.0" layoutY="581.0" mnemonicParsing="false" onAction="#gameStart" text="Click To Select Official" />
+      <TableView fx:id="tableOfficial" layoutX="20.0" layoutY="373.0" prefHeight="200.0" prefWidth="434.0">
+        <columns>
+          <TableColumn fx:id="iDOfficial" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nameOfficial" prefWidth="166.0" text="Name" />
+            <TableColumn fx:id="ageOfficial" prefWidth="75.0" text="Age" />
+            <TableColumn fx:id="stateOfficial" prefWidth="75.0" text="State" />
+        </columns>
+      </TableView>
+      <TableView fx:id="selectedOfficialTable" layoutX="563.0" layoutY="373.0" prefHeight="200.0" prefWidth="222.0">
+        <columns>
+          <TableColumn fx:id="selectedIDOfficial" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="selectedNameOfficial" prefWidth="138.0" text="Name" />
+        </columns>
+      </TableView>
+      <Button fx:id="addbtnOfficial" layoutX="479.0" layoutY="430.0" mnemonicParsing="false" onAction="#addingOfficial" text="Add &gt;&gt;" />
+      <Button layoutX="461.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
    </children>
 </AnchorPane>

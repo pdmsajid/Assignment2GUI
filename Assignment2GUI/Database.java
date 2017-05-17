@@ -49,6 +49,10 @@ public class Database {
 	Participant sa4 = new SuperAthlete("sa4","Super Athlete", "John Landy", 22, "qld", 1);
 	Participant sa7 = new SuperAthlete("sa7","Super Athlete", "Michael Hillardt", 28, "qld", 1);
 	
+	Official ref1 = new Official("ref6","Officer",  "Michael Hillardt", 48, "vic", 2);
+	Official ref2 = new Official("ref8","Officer",  "Alan Ozolins", 37, "vic", 2);
+	
+	
 	public ObservableList<Athlete> getAthlete(){
 		ObservableList<Athlete> athleteList = FXCollections.observableArrayList();
 		athleteList.add(cy1);
@@ -66,6 +70,9 @@ public class Database {
 	}
 	public ObservableList<Official> getOfficial(){
 		ObservableList<Official> officialList =  FXCollections.observableArrayList();
+		officialList.add(ref1);
+		officialList.add(ref2);		
+		
 		return officialList;
 	}
 	

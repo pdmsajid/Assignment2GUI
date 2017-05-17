@@ -49,7 +49,30 @@ public class SelectedGameController implements Initializable{
 	@FXML
 	private Button addbtn;	
 	@FXML
-	private Button nextbtn;
+	private Button gameStartbtn;
+	
+	
+	//Official Table
+	@FXML
+	private TableView<Official> tableOfficial;	
+	@FXML
+	private TableColumn<Official, String> iDOfficial;	
+	@FXML
+	private TableColumn<Official, String> nameOfficial;
+	@FXML
+	private TableColumn<Official, Integer> ageOfficial;
+	@FXML
+	private TableColumn<Official, String> stateOfficial;		
+	
+	//new
+	@FXML
+	private TableView<Official> selectedOfficialTable;
+	@FXML
+	private TableColumn<Official, String> selectedIDOfficial;	
+	@FXML
+	private TableColumn<Official, String> selectedNameOfficial;
+	@FXML
+	private Button addbtnOfficial;
 	
 	Ozlympics game = new Ozlympics();
 	Stage stage = game.myStage;
@@ -66,60 +89,28 @@ public class SelectedGameController implements Initializable{
 		
 		table.setItems(db.getAthlete());
 		
+		//Official Table making
+		iDOfficial.setCellValueFactory(new PropertyValueFactory<>("ID"));		
+		nameOfficial.setCellValueFactory(new PropertyValueFactory<>("name"));
+		ageOfficial.setCellValueFactory(new PropertyValueFactory<>("age"));
+		stateOfficial.setCellValueFactory(new PropertyValueFactory<>("state"));
+		
+		
+		tableOfficial.setItems(db.getOfficial());
+		
 	}
-	//new ------------------------------------------------------------
-	private ObservableList<Athlete> athleteSelected = null; 
-	ObservableList<Athlete> allAthlete = FXCollections.observableArrayList();
-	boolean value = true;
-	ArrayList<Athlete> selected = new ArrayList<Athlete>();
-	public void addAthleteToTable(ActionEvent event){
-		if(event.getSource()== addbtn){
 		
-		
-	//	if (value){
-			
-			allAthlete = table.getItems();
-			//allAthlete = table.getSelectionModel().getSelectedItems();
-			//allAthlete = null;
-			athleteSelected = table.getSelectionModel().getSelectedItems();
-			
-			
-			
-			
-			value = false;
-	//	}
-		
-		//table.getSelectionModel().clearSelection();
-		//athleteSelected.add();
-		
-		
-		for(Athlete row : athleteSelected){
-			selected.add(row);
-			System.out.println(row.getName());
-			//if(row != null){
-			   allAthlete.add(row);
-			//}
-		}
-		//if(!selected.isEmpty()){
-			System.out.println("not null");
-			selectedID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-			selectedParticipantType.setCellValueFactory(new PropertyValueFactory<>("participantType"));
-			selectedName.setCellValueFactory(new PropertyValueFactory<>("name"));
-		selectedAthleteTable.setItems(allAthlete);	
-		//}
-		}
-	}
-//---------------------------------------------------------------------------------------------	
-	private ArrayList<Athlete> addedAthletes = new ArrayList<Athlete>();
+	
+	ArrayList<Athlete> addedAthletes = new ArrayList<Athlete>();
 	private ObservableList<Athlete> obaddedAthletes = FXCollections.observableArrayList();
 	public void addingAthletes(ActionEvent event){
+		
 		Athlete ath = table.getSelectionModel().getSelectedItem();
 		addedAthletes.add(ath);
-		
-		System.out.println(ath.getName());
+				
 		for (Athlete a : addedAthletes){
 			System.out.println(a.getName());
-			
+			System.out.println(addedAthletes.size());
 		}
 		obaddedAthletes.add(ath);
 		// new code 
@@ -130,10 +121,12 @@ public class SelectedGameController implements Initializable{
 		selectedAthleteTable.setItems(obaddedAthletes);	
 		
 	}
-	public ArrayList<Athlete> getSelectedAthletes(){
-		return addedAthletes;
+	public void getSelectedAthletes(){
+		
+		//System.out.println(selectedAth.get(0).getName());
+	//return selectedAth;
 	}
-	public void nextOfficialSelect(ActionEvent event) throws IOException{
+	/**public void nextOfficialSelect(ActionEvent event) throws IOException{
 		if(event.getSource()== nextbtn){
 			stage = (Stage) nextbtn.getScene().getWindow();
 			Parent root3 = (Parent)FXMLLoader.load(getClass().getResource("/application/OfficialsSelect.fxml"));
@@ -142,6 +135,47 @@ public class SelectedGameController implements Initializable{
 			stage.setScene(scene3);
 			stage.show();
 			}
+	}
+	**/
+	
+	//Officical add button 
+	
+	private ArrayList<Official> addedOfficial = new ArrayList<Official>();
+	private ObservableList<Official> obaddedOfficial= FXCollections.observableArrayList();
+	public void addingOfficial(ActionEvent event){
+		Official offic = tableOfficial.getSelectionModel().getSelectedItem();
+		addedOfficial.add(offic);
+		
+		System.out.println(offic.getName());
+		for (Official a : addedOfficial){
+			System.out.println(a.getName());
+			
+		}
+		obaddedOfficial.add(offic);
+		// new code 
+		
+		selectedIDOfficial.setCellValueFactory(new PropertyValueFactory<>("ID"));		
+		selectedNameOfficial.setCellValueFactory(new PropertyValueFactory<>("name"));
+		selectedOfficialTable.setItems(obaddedOfficial);	
+		
+	}
+	
+	// Game Starting 
+	public void gameStart(ActionEvent event){
+		if (event.getSource() == gameStartbtn){			
+			String gameID = "SP1";
+			ArrayList<Athlete> gameAthlete = addedAthletes;
+			ArrayList<Official> ref = addedOfficial;			
+			System.out.println(gameAthlete.get(0).getName());
+			System.out.println(gameAthlete.get(1).getName());
+			System.out.println(gameAthlete.get(2).getName());
+			System.out.println(ref.get(0).getName());
+			
+			Sport sp = new Sport(gameID, gameAthlete, ref.get(0));
+			sp.startGame();
+			System.out.println(gameAthlete.get(0).getCompeteTime());
+			System.out.println(sp.getWinner().getName());
+		}
 	}
 
 }

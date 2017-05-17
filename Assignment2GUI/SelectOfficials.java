@@ -20,27 +20,27 @@ import javafx.stage.Stage;
 
 public class SelectOfficials implements Initializable{
 	@FXML
-	private TableView<Athlete> table;	
+	private TableView<Official> table;	
 	@FXML
-	private TableColumn<Athlete, String> iD;	
+	private TableColumn<Official, String> iD;	
 	@FXML
-	private TableColumn<Athlete, String> name;
+	private TableColumn<Official, String> name;
 	@FXML
-	private TableColumn<Athlete, Integer> age;
+	private TableColumn<Official, Integer> age;
 	@FXML
-	private TableColumn<Athlete, String> state;		
+	private TableColumn<Official, String> state;		
 	
 	//new
 	@FXML
-	private TableView<Athlete> selectedAthleteTable;
+	private TableView<Official> selectedOfficialTable;
 	@FXML
-	private TableColumn<Athlete, String> selectedID;
+	private TableColumn<Official, String> selectedID;	
 	@FXML
-	private TableColumn<Athlete, String> selectedParticipantType;
-	@FXML
-	private TableColumn<Athlete, String> selectedName;
+	private TableColumn<Official, String> selectedName;
 	@FXML
 	private Button addbtn;
+	@FXML
+	private Button gameStartbtn;
 	
 	Ozlympics game = new Ozlympics();
 	Stage stage = game.myStage;
@@ -54,7 +54,49 @@ public class SelectOfficials implements Initializable{
 		state.setCellValueFactory(new PropertyValueFactory<>("state"));
 		Database db = new Database();
 		
-		table.setItems(db.getAthlete());
+		table.setItems(db.getOfficial());
 		
+	}
+	
+	private ArrayList<Official> addedOfficial = new ArrayList<Official>();
+	private ObservableList<Official> obaddedOfficial= FXCollections.observableArrayList();
+	public void addingOfficial(ActionEvent event){
+		Official offic = table.getSelectionModel().getSelectedItem();
+		addedOfficial.add(offic);
+		
+		System.out.println(offic.getName());
+		for (Official a : addedOfficial){
+			System.out.println(a.getName());
+			
+		}
+		obaddedOfficial.add(offic);
+		// new code 
+		
+		selectedID.setCellValueFactory(new PropertyValueFactory<>("ID"));		
+		selectedName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		selectedOfficialTable.setItems(obaddedOfficial);	
+		
+	}
+	public ArrayList<Official> getSelectedOfficial(){
+		
+	return addedOfficial;
+		
+	}
+	public void gameStart(ActionEvent event){
+		if (event.getSource() == gameStartbtn){
+			SelectedGameController sg = new SelectedGameController();
+			String gameID = "SP1";
+			ArrayList<Athlete> gameAthlete = sg.addedAthletes;
+			ArrayList<Official> ref = getSelectedOfficial();
+			sg.getSelectedAthletes();
+			Database dbb = new Database();
+			//System.out.println(gameAthlete.get(0).getName());
+			//System.out.println(gameAthlete.get(1).getName());
+			//System.out.println(gameAthlete.get(2).getName());
+			System.out.println(ref.get(0).getName());
+			
+			//Sport sp = new Sport(gameID, gameAthlete, ref.get(0));
+			//sp.startGame();
+		}
 	}
 }
