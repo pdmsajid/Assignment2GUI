@@ -24,8 +24,8 @@
         </columns>
       </TableView>
       <Button fx:id="addbtn" layoutX="477.0" layoutY="195.0" mnemonicParsing="false" onAction="#addingAthletes" text="Add  &gt;&gt;" />
-      <Button layoutX="477.0" layoutY="240.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
-      <Button fx:id="gameStartbtn" layoutX="655.0" layoutY="581.0" mnemonicParsing="false" onAction="#gameStart" text="Click To Select Official" />
+      <Button fx:id="removeAthletebtn" layoutX="477.0" layoutY="240.0" mnemonicParsing="false" onAction="#removingAthletes" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
+      <Button fx:id="gameStartbtn" layoutX="655.0" layoutY="581.0" mnemonicParsing="false" onAction="#gameStart" text="Game Start" />
       <TableView fx:id="tableOfficial" layoutX="20.0" layoutY="373.0" prefHeight="200.0" prefWidth="434.0">
         <columns>
           <TableColumn fx:id="iDOfficial" prefWidth="75.0" text="ID" />
@@ -41,6 +41,6 @@
         </columns>
       </TableView>
       <Button fx:id="addbtnOfficial" layoutX="479.0" layoutY="430.0" mnemonicParsing="false" onAction="#addingOfficial" text="Add &gt;&gt;" />
-      <Button layoutX="461.0" layoutY="473.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
+      <Button fx:id="removeOfficialbtn" layoutX="461.0" layoutY="473.0" mnemonicParsing="false" onAction="#removingOfficial" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
    </children>
 </AnchorPane>
