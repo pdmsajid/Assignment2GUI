@@ -5,7 +5,7 @@ import java.util.*;
  *
  */
 public class Sport {
-	private String gameID;
+	private String gameID;	
 	private ArrayList<Athlete> pList; // arraylist for list of athletes
 	private Participant referee;
 	private Athlete winner = null;// winner for game
@@ -22,6 +22,13 @@ public class Sport {
 		pList = game;
 		referee = ref;
 
+	}
+	public String getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(String gameID) {
+		this.gameID = gameID;
 	}
 
 	public ArrayList<Athlete> getAthlete() {

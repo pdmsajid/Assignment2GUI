@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ResultsShowController">
+   <children>
+      <TableView fx:id="reTable" layoutX="106.0" layoutY="85.0" prefHeight="200.0" prefWidth="388.0">
+        <columns>
+          <TableColumn fx:id="reID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="reName" prefWidth="109.0" text="Name" />
+            <TableColumn fx:id="reCompete" prefWidth="130.0" text="Compete Time" />
+            <TableColumn fx:id="rePoints" prefWidth="65.0" text="Points" />
+        </columns>
+      </TableView>
+      <Label fx:id="gameNameLable" layoutX="39.0" layoutY="30.0" prefHeight="29.0" prefWidth="81.0" />
+      <Label layoutX="144.0" layoutY="30.0" prefHeight="29.0" prefWidth="81.0" text="Game" />
+      <Label fx:id="gameID" layoutX="207.0" layoutY="30.0" prefHeight="29.0" prefWidth="81.0" />
+   </children>
+</AnchorPane>

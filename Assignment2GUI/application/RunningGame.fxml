@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SelectedGameController">
    <children>
@@ -42,5 +44,10 @@
       </TableView>
       <Button fx:id="addbtnOfficial" layoutX="479.0" layoutY="430.0" mnemonicParsing="false" onAction="#addingOfficial" text="Add &gt;&gt;" />
       <Button fx:id="removeOfficialbtn" layoutX="461.0" layoutY="473.0" mnemonicParsing="false" onAction="#removingOfficial" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
+      <Label fx:id="gameCategory" layoutX="20.0" layoutY="22.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

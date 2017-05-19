@@ -1,7 +1,10 @@
 //package application;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,6 +34,9 @@ public class Ozlympics extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+		MainController main =new  MainController();
+		SelectedGameController se = new SelectedGameController();
+		
 	}
 	public void selectMenu(){
 		System.out.println("sdkflasjk");
@@ -44,5 +50,16 @@ public class Ozlympics extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	public void gameIntialResults() throws IOException{
+		
+		Stage popupInitialResult = new Stage();
+		Parent root6 = (Parent)FXMLLoader.load(getClass().getResource("/application/InitialResults.fxml"));
+		popupInitialResult.initModality(Modality.APPLICATION_MODAL);
+		popupInitialResult.setTitle("Game Results");
+		Scene sce1 = new Scene(root6);
+		popupInitialResult.setScene(sce1);
+		popupInitialResult.show(); 
 	}
 }

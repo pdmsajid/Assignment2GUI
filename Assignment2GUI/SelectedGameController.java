@@ -15,9 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SelectedGameController implements Initializable{
@@ -80,9 +82,12 @@ public class SelectedGameController implements Initializable{
 	@FXML
 	private Button removeOfficialbtn;
 	
+	@FXML
+	private Label gameCategory;
+	
 	Ozlympics game = new Ozlympics();
 	Stage stage = game.myStage;
-	
+	Database db = new Database();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -92,9 +97,9 @@ public class SelectedGameController implements Initializable{
 		name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		age.setCellValueFactory(new PropertyValueFactory<>("age"));
 		state.setCellValueFactory(new PropertyValueFactory<>("state"));
-		Database db = new Database();
 		
-		table.setItems(db.getAthlete());
+		
+		table.setItems(FXCollections.observableList(db.getAthlete()));
 		
 		//Official Table making
 		iDOfficial.setCellValueFactory(new PropertyValueFactory<>("ID"));		
@@ -114,11 +119,15 @@ public class SelectedGameController implements Initializable{
 		selectedIDOfficial.setCellValueFactory(new PropertyValueFactory<>("ID"));		
 		selectedNameOfficial.setCellValueFactory(new PropertyValueFactory<>("name"));
 		
+		gameCategory.setText(MainController.selectedGame);
+		
 	}
 	// add athlets	
 	
 	ArrayList<Athlete> addedAthletes = new ArrayList<Athlete>();
+	
 	//private ObservableList<Athlete> obaddedAthletes = FXCollections.observableArrayList();
+	@FXML
 	public void addingAthletes(ActionEvent event){
 		ObservableList<Athlete> allAthletes = table.getItems();
 		ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
@@ -142,7 +151,7 @@ public class SelectedGameController implements Initializable{
 		selectedAth.forEach(allAthletes::remove);
 	}	
 	// remove athletes
-	
+	@FXML
 	public void removingAthletes(ActionEvent event){
 		ObservableList<Athlete> allAthletes = selectedAthleteTable.getItems();
 		ObservableList<Athlete> selectedAth = selectedAthleteTable.getSelectionModel().getSelectedItems();
@@ -157,6 +166,7 @@ public class SelectedGameController implements Initializable{
 	
 	private ArrayList<Official> addedOfficial = new ArrayList<Official>();
 	
+	@FXML
 	public void addingOfficial(ActionEvent event){		
 		ObservableList<Official> allOfficails = tableOfficial.getItems();
 		ObservableList<Official> selectedOfficials = tableOfficial.getSelectionModel().getSelectedItems();
@@ -173,6 +183,7 @@ public class SelectedGameController implements Initializable{
 		
 	}
 	// Official remove
+	@FXML
 	public void removingOfficial(ActionEvent event){
 		ObservableList<Official> allOfficial = selectedOfficialTable.getItems();
 		ObservableList<Official> selectedOfficial = selectedOfficialTable.getSelectionModel().getSelectedItems();
@@ -184,9 +195,30 @@ public class SelectedGameController implements Initializable{
 	}	
 	
 	// Game Starting 
-	public void gameStart(ActionEvent event){
-		if (event.getSource() == gameStartbtn){			
-			String gameID = "SP1";
+	
+	
+	
+	@FXML
+	public void gameStart(ActionEvent event) throws IOException{
+		
+		int i = 1 ;
+		String gameID = null;
+		if (event.getSource() == gameStartbtn){		
+			if(MainController.gameCategory == 1){ 
+			 gameID = "R0" + i;
+			i++;			
+			}
+			else if (MainController.gameCategory == 2){
+			   gameID = "S0" + i;
+				i++;
+			}	
+			else if (MainController.gameCategory == 3){
+			   gameID = "C0" + i;
+				i++;
+			}
+			else{
+				gameID = "No ID";
+			}
 			ArrayList<Athlete> gameAthlete = addedAthletes;
 			ArrayList<Official> ref = addedOfficial;			
 			System.out.println(gameAthlete.get(0).getName());
@@ -202,6 +234,26 @@ public class SelectedGameController implements Initializable{
 			System.out.println(gameAthlete.get(0).getPoint());
 			System.out.println(gameAthlete.get(1).getPoint());
 			System.out.println(gameAthlete.get(2).getPoint());
+			System.out.println(sp.getReferee().getName());
+			
+			
+			System.out.println(sp.getGameID());			
+			
+			ObservableList<Athlete> athleteList = FXCollections.observableList(addedAthletes);
+			//athleteList.add(gameAthlete.get(0));
+			//athleteList.add(gameAthlete.get(1));
+			//athleteList.add(gameAthlete.get(2));
+			
+			ResultsShowController rs = new ResultsShowController();
+			//rs.sportDetails(addedAthletes);
+			rs.sportDetails(athleteList);
+			rs.setObersvableList(athleteList);
+			
+			Ozlympics ob = new Ozlympics();
+			ob.gameIntialResults();
+				
+			
+			
 		}
 	}
 
