@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 
 public class MainController implements Initializable{
 	static String selectedGame;
-	static int gameCategory;
+	static int gameCategoryValue;
+	static String gameCategoryType;
 	@FXML
 	private Button newGamebtn;
 	
@@ -49,7 +50,8 @@ public class MainController implements Initializable{
 	public void selectGame(ActionEvent event) throws IOException{
 		if(event.getSource()== selectRunningbtn){
 			selectedGame = "Select Running and Super Athletes between 4 to 8 and one Official for this Running Game ";
-			gameCategory =1;
+			gameCategoryValue =1;
+			gameCategoryType ="sprinter";
 			stage = (Stage) selectRunningbtn.getScene().getWindow();
 			Parent root2 = (Parent)FXMLLoader.load(getClass().getResource("/application/RunningGame.fxml"));
 			Scene scene2 = new Scene(root2);
@@ -64,7 +66,8 @@ public class MainController implements Initializable{
 		
 		if(event.getSource()== selectSwimmingbtn){
 			selectedGame ="Select Swimming and Super Athletes between 4 to 8 and one Official for this Swimming Game";
-			gameCategory =2;
+			gameCategoryValue =2;
+			gameCategoryType = "swimmer";
 			stage = (Stage) selectSwimmingbtn.getScene().getWindow();
 			Parent root2 = (Parent)FXMLLoader.load(getClass().getResource("/application/RunningGame.fxml"));
 			Scene scene2 = new Scene(root2);
@@ -78,7 +81,8 @@ public class MainController implements Initializable{
 	public void selectCyclingGame(ActionEvent event) throws IOException{
 		if(event.getSource()== selectCyclingbtn){
 			selectedGame ="Select Cycling and Super Athletes between 4 to 8 and one Official for this Cycling Game";
-			gameCategory =3;
+			gameCategoryValue =3;
+			gameCategoryType = "cyclist";
 			stage = (Stage) selectCyclingbtn.getScene().getWindow();
 			Parent root2 = (Parent)FXMLLoader.load(getClass().getResource("/application/RunningGame.fxml"));
 			Scene scene2 = new Scene(root2);

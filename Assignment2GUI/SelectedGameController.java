@@ -126,37 +126,54 @@ public class SelectedGameController implements Initializable{
 	
 	ArrayList<Athlete> addedAthletes = new ArrayList<Athlete>();
 	
-	//private ObservableList<Athlete> obaddedAthletes = FXCollections.observableArrayList();
+	
 	@FXML
-	public void addingAthletes(ActionEvent event){
+	public void addingAthletes(ActionEvent event) throws IOException {
 		ObservableList<Athlete> allAthletes = table.getItems();
-		ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
+		//ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
 		
 		ObservableList<Athlete> allAthletesinselectedTable = selectedAthleteTable.getItems();
 		
-		Athlete ath = table.getSelectionModel().getSelectedItem();
-		addedAthletes.add(ath);
-				
+		Athlete ath = table.getSelectionModel().getSelectedItem();		
+		try {
+			if (ath.getParticipantType() == MainController.gameCategoryType){ 
+			ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
+			selectedAth.forEach(allAthletesinselectedTable::add);
+			selectedAth.forEach(allAthletes::remove);
+			addedAthletes.add(ath);
+			}
+			else if(ath.getParticipantType() == "super"){ 
+				ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
+				selectedAth.forEach(allAthletesinselectedTable::add);
+				selectedAth.forEach(allAthletes::remove);
+				addedAthletes.add(ath);
+				}
+			else {
+				throw new WrongTypeException ("Wrong Paticipant Type Insert");
+			}
+		} catch (WrongTypeException e) {				
+			game.messageShowing(e.getMessage());
+			
+		}
+		
+		
+		
 		for (Athlete a : addedAthletes){
 			System.out.println(a.getName());
 			System.out.println(addedAthletes.size());
 		}
-		//obaddedAthletes.add(ath);		
-		//selectedID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		//selectedParticipantType.setCellValueFactory(new PropertyValueFactory<>("participantType"));
-		//selectedName.setCellValueFactory(new PropertyValueFactory<>("name"));
-		//selectedAthleteTable.setItems(obaddedAthletes);	
 		
-		selectedAth.forEach(allAthletesinselectedTable::add);
-		selectedAth.forEach(allAthletes::remove);
+		
+		//selectedAth.forEach(allAthletesinselectedTable::add);
+		//selectedAth.forEach(allAthletes::remove);
 	}	
 	// remove athletes
 	@FXML
 	public void removingAthletes(ActionEvent event){
 		ObservableList<Athlete> allAthletes = selectedAthleteTable.getItems();
 		ObservableList<Athlete> selectedAth = selectedAthleteTable.getSelectionModel().getSelectedItems();
-		ObservableList<Athlete> allAthletesinTable = table.getItems();
-		Athlete ath = selectedAthleteTable.getSelectionModel().getSelectedItem();
+		ObservableList<Athlete> allAthletesinTable = table.getItems();		
+		Athlete ath = selectedAthleteTable.getSelectionModel().getSelectedItem();		
 		addedAthletes.remove(ath);		
 		selectedAth.forEach(allAthletesinTable::add);
 		selectedAth.forEach(allAthletes::remove);
@@ -167,19 +184,32 @@ public class SelectedGameController implements Initializable{
 	private ArrayList<Official> addedOfficial = new ArrayList<Official>();
 	
 	@FXML
-	public void addingOfficial(ActionEvent event){		
+	public void addingOfficial(ActionEvent event) throws IOException{		
 		ObservableList<Official> allOfficails = tableOfficial.getItems();
-		ObservableList<Official> selectedOfficials = tableOfficial.getSelectionModel().getSelectedItems();
+		//ObservableList<Official> selectedOfficials = tableOfficial.getSelectionModel().getSelectedItems();
 		ObservableList<Official> allOfficialinselectedOfficialTable = selectedOfficialTable.getItems();
 		Official offic = tableOfficial.getSelectionModel().getSelectedItem();
-		addedOfficial.add(offic);
-		System.out.println(offic.getName());
+		
+		try {
+			if(addedOfficial.size()<1){ 				
+			ObservableList<Official> selectedOfficials = tableOfficial.getSelectionModel().getSelectedItems();
+			addedOfficial.add(offic);
+			selectedOfficials.forEach(allOfficialinselectedOfficialTable::add);
+			selectedOfficials.forEach(allOfficails::remove);
+			}
+			else{
+				throw new MoreOfficials("You can't put more than 1 Refree");
+			}
+		} catch (MoreOfficials e) {
+			game.messageShowing(e.getMessage());
+		}
+		
+		
 		for (Official a : addedOfficial){
 			System.out.println(a.getName());
 			
 		}		
-		selectedOfficials.forEach(allOfficialinselectedOfficialTable::add);
-		selectedOfficials.forEach(allOfficails::remove);
+		
 		
 	}
 	// Official remove
@@ -196,31 +226,61 @@ public class SelectedGameController implements Initializable{
 	
 	// Game Starting 
 	
-	
-	
+	private int i = 1 ;
+	CheckAthleteNumbers ch = new CheckAthleteNumbers();
 	@FXML
 	public void gameStart(ActionEvent event) throws IOException{
-		
-		int i = 1 ;
 		String gameID = null;
 		if (event.getSource() == gameStartbtn){		
-			if(MainController.gameCategory == 1){ 
+			if(MainController.gameCategoryValue == 1){ 
 			 gameID = "R0" + i;
 			i++;			
 			}
-			else if (MainController.gameCategory == 2){
+			else if (MainController.gameCategoryValue == 2){
 			   gameID = "S0" + i;
 				i++;
 			}	
-			else if (MainController.gameCategory == 3){
+			else if (MainController.gameCategoryValue == 3){
 			   gameID = "C0" + i;
 				i++;
 			}
 			else{
 				gameID = "No ID";
 			}
-			ArrayList<Athlete> gameAthlete = addedAthletes;
-			ArrayList<Official> ref = addedOfficial;			
+			System.out.println("sdklfjlskjglskjglsdjkg"+addedAthletes.size());
+			System.out.println("ofice"+addedOfficial.size());
+			
+			try{
+				ch.checkNumerOfAthletes(addedAthletes.size());
+				ArrayList<Athlete> gameAthlete = addedAthletes;				
+				ArrayList<Official> ref = addedOfficial;
+				ObservableList<Athlete> athleteList = FXCollections.observableList(addedAthletes);
+				
+				
+				ResultsShowController rs = new ResultsShowController();
+				
+				Sport sp = new Sport(gameID, gameAthlete, ref.get(0));
+				sp.startGame();
+				
+				rs.sportDetails(athleteList);
+				rs.setObersvableList(athleteList);
+				
+				Ozlympics ob = new Ozlympics();
+				ob.gameIntialResults();
+					
+				
+			}catch(GameFullException e){
+				System.out.println(e.getMessage());
+				game.messageShowing(e.getMessage());
+			} catch (TooFewAthleteException e) {
+				System.out.println(e.getMessage());
+				game.messageShowing(e.getMessage());
+			} 
+			
+			//ArrayList<Athlete> gameAthlete = addedAthletes;
+			
+			//ArrayList<Official> ref = addedOfficial;	
+			/**
 			System.out.println(gameAthlete.get(0).getName());
 			System.out.println(gameAthlete.get(1).getName());
 			System.out.println(gameAthlete.get(2).getName());
@@ -238,21 +298,21 @@ public class SelectedGameController implements Initializable{
 			
 			
 			System.out.println(sp.getGameID());			
-			
+		
+														**/
+			/**
 			ObservableList<Athlete> athleteList = FXCollections.observableList(addedAthletes);
-			//athleteList.add(gameAthlete.get(0));
-			//athleteList.add(gameAthlete.get(1));
-			//athleteList.add(gameAthlete.get(2));
+			
 			
 			ResultsShowController rs = new ResultsShowController();
-			//rs.sportDetails(addedAthletes);
+			
 			rs.sportDetails(athleteList);
 			rs.setObersvableList(athleteList);
 			
 			Ozlympics ob = new Ozlympics();
 			ob.gameIntialResults();
 				
-			
+			**/
 			
 		}
 	}

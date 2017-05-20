@@ -21,27 +21,27 @@ public class Database {
 	Athlete sp7 = new Sprinter("sp7","Spinter", "Ron Opie",24, "nsw");
 	Athlete sp8 = new Sprinter("sp4", "Spinter","Jimmy Carlton", 24, "nsw");
 
-	Athlete sw1 = new Swimmer("sw1","Swimmer", "Andy", 23, "vic");
-	Athlete sw2 = new Swimmer("sw2","Swimmer", "Peters", 35, "vic");
-	Athlete sw3 = new Swimmer("sw3","Swimmer", "Shane Gould", 31, "nsw");
-	Athlete sw4 = new Swimmer("sw4","Swimmer", "Ian Thorpe", 24, "nsw");
+	Athlete sw1 = new Swimmer("sw1","swimmer", "Andy", 23, "vic");
+	Athlete sw2 = new Swimmer("sw2","swimmer", "Peters", 35, "vic");
+	Athlete sw3 = new Swimmer("sw3","swimmer", "Shane Gould", 31, "nsw");
+	Athlete sw4 = new Swimmer("sw4","swimmer", "Ian Thorpe", 24, "nsw");
 
-	Athlete sw9 = new Swimmer("sw9","Swimmer", "Murray Rose", 23, "vic");
-	Athlete sw5 = new Swimmer("sw5","Swimmer", "Grant Hackett", 35, "vic");
-	Athlete sw6 = new Swimmer("sw6","Swimmer", "Shane Gould", 31, "nsw");
-	Athlete sw7 = new Swimmer("sw7","Swimmer", "Kieren Perkins", 24, "nsw");
-	Athlete sw8 = new Swimmer("sw8","Swimmer", "Ian Thorpe", 24, "nsw");
+	Athlete sw9 = new Swimmer("sw9","swimmer", "Murray Rose", 23, "vic");
+	Athlete sw5 = new Swimmer("sw5","swimmer", "Grant Hackett", 35, "vic");
+	Athlete sw6 = new Swimmer("sw6","swimmer", "Shane Gould", 31, "nsw");
+	Athlete sw7 = new Swimmer("sw7","swimmer", "Kieren Perkins", 24, "nsw");
+	Athlete sw8 = new Swimmer("sw8","swimmer", "Ian Thorpe", 24, "nsw");
 
-	Athlete cy1 = new Cyclist("cy1","Cyclist", "Andy", 23, "vic");
-	Athlete cy2 = new Cyclist("cy2","Cyclist", "Peters", 35, "vic");
-	Athlete cy3 = new Cyclist("cy3","Cyclist", "Shane Gould", 31, "nsw");
-	Athlete cy4 = new Cyclist("cy4","Cyclist", "Ian Thorpe", 24, "nsw");
+	Athlete cy1 = new Cyclist("cy1","cyclist", "Andy", 23, "vic");
+	Athlete cy2 = new Cyclist("cy2","cyclist", "Peters", 35, "vic");
+	Athlete cy3 = new Cyclist("cy3","cyclist", "Shane Gould", 31, "nsw");
+	Athlete cy4 = new Cyclist("cy4","cyclist", "Ian Thorpe", 24, "nsw");
 
-	Athlete cy5 = new Cyclist("cy5","Cyclist", "Murray Rose", 23, "vic");
-	Athlete cy6 = new Cyclist("cy6","Cyclist", "Grant Hackett", 35, "vic");
-	Athlete cy7 = new Cyclist("cy7","Cyclist", "Shane Gould", 31, "nsw");
-	Athlete cy8 = new Cyclist("cy8","Cyclist", "Kieren Perkins", 24, "nsw");
-	Athlete cy9 = new Cyclist("cy9","Cyclist", "Ian Thorpe", 24, "nsw");
+	Athlete cy5 = new Cyclist("cy5","cyclist", "Murray Rose", 23, "vic");
+	Athlete cy6 = new Cyclist("cy6","cyclist", "Grant Hackett", 35, "vic");
+	Athlete cy7 = new Cyclist("cy7","cyclist", "Shane Gould", 31, "nsw");
+	Athlete cy8 = new Cyclist("cy8","cyclist", "Kieren Perkins", 24, "nsw");
+	Athlete cy9 = new Cyclist("cy9","cyclist", "Ian Thorpe", 24, "nsw");
 
 	SuperAthlete sa1 = new SuperAthlete("sa1","Super Athlete", "Tec", 22, "qld", 2);
 	SuperAthlete sa2 = new SuperAthlete("sa2","Super Athlete", "Dawn Fraser", 28, "qld", 2);
@@ -59,6 +59,12 @@ public class Database {
 		athleteList.add(cy2);
 		athleteList.add(cy3);
 		athleteList.add(cy4);
+		
+		athleteList.add(cy5);
+		athleteList.add(cy6);
+		athleteList.add(cy7);
+		athleteList.add(cy8);
+		athleteList.add(cy9);
 		
 		athleteList.add(sw1);
 		athleteList.add(sw2);

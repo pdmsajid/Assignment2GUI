@@ -4,10 +4,13 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 //import javafx.scene.layout.BorderPane;
 
 
@@ -61,5 +64,20 @@ public class Ozlympics extends Application {
 		Scene sce1 = new Scene(root6);
 		popupInitialResult.setScene(sce1);
 		popupInitialResult.show(); 
+	}
+	public void messageShowing(String message) throws IOException{
+		Stage messageShow = new Stage();		
+		messageShow.initModality(Modality.APPLICATION_MODAL);
+		messageShow.setTitle("Worrning Message");
+		messageShow.setMinHeight(200);
+		messageShow.setMinWidth(400);
+		Label l = new Label();		
+		l.setText(message);		
+		VBox layout = new VBox(100);
+		layout.getChildren().addAll(l);
+		layout.setAlignment(Pos.CENTER);
+		Scene sce2 = new Scene(layout);
+		messageShow.setScene(sce2);
+		messageShow.show();
 	}
 }
