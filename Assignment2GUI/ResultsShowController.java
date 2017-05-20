@@ -14,6 +14,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
+/**
+ * Initial game results show controller
+ * 
+ * @author Kalinga
+ *
+ */
 public class ResultsShowController implements Initializable {
 
 	@FXML
@@ -49,13 +55,13 @@ public class ResultsShowController implements Initializable {
 	static ObservableList<Athlete> ath;
 
 	ArrayList<Athlete> aaa;
-
+/**
+ * 
+ * @param addedAthletes
+ */
 	@FXML
 	public void sportDetails(ObservableList<Athlete> addedAthletes) {
-
 		ath = addedAthletes;
-		System.out.println("this is ob" + ath.get(0).getName());
-
 	}
 
 	@FXML
@@ -72,7 +78,6 @@ public class ResultsShowController implements Initializable {
 		reName.setCellValueFactory(new PropertyValueFactory<>("name"));
 		reCompete.setCellValueFactory(new PropertyValueFactory<>("competeTime"));
 		rePoints.setCellValueFactory(new PropertyValueFactory<>("point"));
-
 		reTable.setItems(ath);
 
 	}

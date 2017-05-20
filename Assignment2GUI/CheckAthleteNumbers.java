@@ -1,4 +1,11 @@
-
+/**
+ * 
+ * @author Kalinga
+ * 
+ */
+/*
+ * Exception handeling for few athletes and max athletes and no referee 
+ */
 public class CheckAthleteNumbers {
 
 	public void checkNumerOfAthletes(int athnum, int officNum)

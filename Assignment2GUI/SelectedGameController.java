@@ -21,6 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class control RunningGame fxml in application package
+ * 
+ * @author Kalinga
+ *
+ */
 public class SelectedGameController implements Initializable {
 	@FXML
 	private TableView<Athlete> table;
@@ -124,11 +130,7 @@ public class SelectedGameController implements Initializable {
 	@FXML
 	public void addingAthletes(ActionEvent event) throws IOException {
 		ObservableList<Athlete> allAthletes = table.getItems();
-		// ObservableList<Athlete> selectedAth =
-		// table.getSelectionModel().getSelectedItems();
-
 		ObservableList<Athlete> allAthletesinselectedTable = selectedAthleteTable.getItems();
-
 		Athlete ath = table.getSelectionModel().getSelectedItem();
 		try {
 			if (ath.getParticipantType().equals(MainController.gameCategoryType)) {
@@ -137,7 +139,7 @@ public class SelectedGameController implements Initializable {
 				selectedAth.forEach(allAthletes::remove);
 				addedAthletes.add(ath);
 			} else if (ath.getParticipantType().equals("super")) {
-				((SuperAthlete)ath).setType(MainController.gameCategoryValue);
+				((SuperAthlete) ath).setType(MainController.gameCategoryValue);
 				ObservableList<Athlete> selectedAth = table.getSelectionModel().getSelectedItems();
 				selectedAth.forEach(allAthletesinselectedTable::add);
 				selectedAth.forEach(allAthletes::remove);
@@ -154,9 +156,6 @@ public class SelectedGameController implements Initializable {
 			System.out.println(a.getName());
 			System.out.println(addedAthletes.size());
 		}
-
-		// selectedAth.forEach(allAthletesinselectedTable::add);
-		// selectedAth.forEach(allAthletes::remove);
 	}
 
 	// remove athletes
@@ -178,8 +177,6 @@ public class SelectedGameController implements Initializable {
 	@FXML
 	public void addingOfficial(ActionEvent event) throws IOException {
 		ObservableList<Official> allOfficails = tableOfficial.getItems();
-		// ObservableList<Official> selectedOfficials =
-		// tableOfficial.getSelectionModel().getSelectedItems();
 		ObservableList<Official> allOfficialinselectedOfficialTable = selectedOfficialTable.getItems();
 		Official offic = tableOfficial.getSelectionModel().getSelectedItem();
 
@@ -263,16 +260,22 @@ public class SelectedGameController implements Initializable {
 
 		}
 	}
-	
+
 	@FXML
-	private Button backToMain;	
+	private Button backToMain;
+
+	/**
+	 * Load main menu
+	 * 
+	 * @throws IOException
+	 */
 	@FXML
-	public void backMain() throws IOException{
+	public void backMain() throws IOException {
 		stage = (Stage) backToMain.getScene().getWindow();
-		Parent root8 = (Parent)FXMLLoader.load(getClass().getResource("/application/OzlympicsFXML.fxml"));
-		Scene sce5 = new Scene(root8);	   
+		Parent root8 = (Parent) FXMLLoader.load(getClass().getResource("/application/OzlympicsFXML.fxml"));
+		Scene sce5 = new Scene(root8);
 		sce5.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
-		stage.setScene(sce5);		
-	    stage.show();
+		stage.setScene(sce5);
+		stage.show();
 	}
 }
