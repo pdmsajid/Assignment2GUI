@@ -92,6 +92,18 @@ public class MainController implements Initializable{
 			stage.show();
 			}
 	}
+	@FXML
+	private Button backtoMain;
+	
+	@FXML
+	public void backToMainMenu() throws IOException{
+		stage = (Stage) backtoMain.getScene().getWindow();
+		Parent root8 = (Parent)FXMLLoader.load(getClass().getResource("/application/OzlympicsFXML.fxml"));
+		Scene sce5 = new Scene(root8);	   
+		sce5.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
+		stage.setScene(sce5);		
+	    stage.show();
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

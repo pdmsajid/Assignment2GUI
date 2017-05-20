@@ -27,7 +27,7 @@
       </TableView>
       <Button fx:id="addbtn" layoutX="477.0" layoutY="195.0" mnemonicParsing="false" onAction="#addingAthletes" text="Add  &gt;&gt;" />
       <Button fx:id="removeAthletebtn" layoutX="477.0" layoutY="240.0" mnemonicParsing="false" onAction="#removingAthletes" prefHeight="25.0" prefWidth="79.0" text="&lt;&lt; Remove" />
-      <Button fx:id="gameStartbtn" layoutX="655.0" layoutY="581.0" mnemonicParsing="false" onAction="#gameStart" text="Game Start" />
+      <Button fx:id="gameStartbtn" layoutX="655.0" layoutY="581.0" mnemonicParsing="false" onAction="#gameStart" prefHeight="45.0" prefWidth="137.0" text="Game Start" />
       <TableView fx:id="tableOfficial" layoutX="20.0" layoutY="373.0" prefHeight="200.0" prefWidth="434.0">
         <columns>
           <TableColumn fx:id="iDOfficial" prefWidth="75.0" text="ID" />
@@ -49,5 +49,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button fx:id="backToMain" layoutX="812.0" layoutY="581.0" mnemonicParsing="false" onAction="#backMain" prefHeight="45.0" prefWidth="137.0" text="Main Menu" />
    </children>
 </AnchorPane>
